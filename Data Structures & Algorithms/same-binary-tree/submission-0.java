@@ -1,0 +1,38 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        List<Integer> ptree = new ArrayList<>();
+        List<Integer> qtree = new ArrayList<>();
+
+        preorder(p,ptree);
+        preorder(q,qtree);
+
+    return ptree.equals(qtree);
+    }
+
+    public void preorder(TreeNode z,List<Integer> x){
+        if(z==null){
+            x.add(null);
+            return;
+        }
+
+        x.add(z.val);
+        preorder(z.left,x);
+        preorder(z.right,x);
+    }
+}
